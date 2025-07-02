@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Aviator Multiplier Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px auto;
+            max-width: 500px;
+            background: #f4f7f8;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            margin-top: 20px;
+            width: 100%;
+            padding: 10px;
+            background-color: #0066cc;
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #004999;
+        }
+        .result {
+            margin-top: 20px;
+            background-color: #e1f5fe;
+            padding: 15px;
+            border-radius: 6px;
+            text-align: center;
+            font-size: 18px;
+            color: #0277bd;
+        }
+        .error {
+            margin-top: 20px;
+            background-color: #ffcdd2;
+            padding: 15px;
+            border-radius: 6px;
+            text-align: center;
+            font-size: 16px;
+            color: #b71c1c;
+        }
+    </style>
+</head>
+<body>
+    <h1>Aviator Multiplier Prediction</h1>
+    <form method="POST" action="/">
+        <label for="color">Color (0 or 1):</label>
+        <select id="color" name="color" required>
+            <option value="" disabled selected>Select Color</option>
+            <option value="0">0</option>
+            <option value="1">1</option>
+        </select>
+
+        <label for="mean">Mean (e.g., 1.41):</label>
+        <input type="number" step="any" id="mean" name="mean" required placeholder="1.41" />
+
+        <label for="var">Variance (e.g., 1.41):</label>
+        <input type="number" step="any" id="var" name="var" required placeholder="1.41" />
+
+        <label for="next_approximate">Next Approximate (e.g., 2.82):</label>
+        <input type="number" step="any" id="next_approximate" name="next_approximate" required placeholder="2.82" />
+
+        <button type="submit">Predict Multiplier</button>
+    </form>
+
+    {% if prediction is not none %}
+        <div class="result">
+            <strong>Predicted next multiplier:</strong> {{ prediction }}
+        </div>
+    {% endif %}
+
+    {% if error %}
+        <div class="error">{{ error }}</div>
+    {% endif %}
+</body>
+</html>
